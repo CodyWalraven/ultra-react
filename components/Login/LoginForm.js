@@ -21,7 +21,7 @@ class LoginForm extends Component {
     let xhr = new XMLHttpRequest()
 
     navigateToHomeScreen = () => {
-      this.props.navigation.navigate("Home")
+      this.props.navigation.navigate("OptionView")
     }
 
     xhr.open("POST", "https://login.assetpanda.com/v2/session/token", true)
