@@ -18,6 +18,8 @@ class OptionView extends Component {
   static navigationOptions = {
     title: "Navigation Options",
     headerMode: "screen",
+    gesturesEnabled: false,
+    headerLeft: null,
     headerStyle: {
       backgroundColor: "#2067AE"
     },
@@ -26,6 +28,10 @@ class OptionView extends Component {
 
   navigateToHomeScreen = () => {
     this.props.navigation.navigate("Home")
+  }
+
+  navigateToBarcode = () => {
+    this.props.navigation.navigate("Barcode")
   }
 
   render() {
@@ -42,6 +48,7 @@ class OptionView extends Component {
           imageHeight={100}
         />
         <CardViewWithImage
+          onPress={() => this.navigateToBarcode()}
           width={this.state.width}
           source={require("../../assets/images/fix_barcode.png")}
           content={this.props.secondary_default}
@@ -54,11 +61,5 @@ class OptionView extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  card: {
-    color: "blue"
-  }
-})
 
 export default withNavigation(OptionView)
