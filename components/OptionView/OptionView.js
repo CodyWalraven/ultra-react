@@ -1,8 +1,9 @@
 import React, { Component } from "react"
-import { View, Text, Dimensions } from "react-native"
+import { View, Text, Dimensions, StyleSheet } from "react-native"
 import { CardViewWithImage } from "react-native-simple-card-view"
+import { withNavigation } from "react-navigation"
 
-export default class OptionView extends Component {
+class OptionView extends Component {
   constructor(props) {
     super(props)
     let width = Dimensions.get("window").width - 20
@@ -15,42 +16,46 @@ export default class OptionView extends Component {
   }
 
   static navigationOptions = {
-    title: "Navigation Optionss",
+    title: "Navigation Options",
     headerMode: "screen",
     color: "blue"
+  }
+
+  navigateToHomeScreen = () => {
+    this.props.navigation.navigate("Home")
   }
 
   render() {
     return (
       <View>
         <CardViewWithImage
+          onPress={() => this.navigateToHomeScreen()}
           width={this.state.width}
-          source={require("../../assets/images/search.png")}
+          source={require("../../assets/images/fix_search.png")}
           content={this.props.secondary_default}
           title={""}
           roundedImage={false}
-          imageWidth={230}
-          imageHeight={89}
+          imageWidth={225}
+          imageHeight={100}
         />
         <CardViewWithImage
           width={this.state.width}
-          source={}
+          source={require("../../assets/images/fix_barcode.png")}
           content={this.props.secondary_default}
-          title={this.props.title}
+          title={""}
           roundedImage={false}
-          imageWidth={230}
-          imageHeight={89}
-        />
-        <CardViewWithImage
-          width={this.state.width}
-          source={}
-          content={this.props.secondary_default}
-          title={this.props.title}
-          roundedImage={false}
-          imageWidth={300}
-          imageHeight={this.state.height}
+          imageWidth={225}
+          imageHeight={100}
         />
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  card: {
+    color: "blue"
+  }
+})
+
+export default withNavigation(OptionView)

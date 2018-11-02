@@ -3,6 +3,7 @@ import { ScrollView, Text, Container, Dimensions, Keyboard } from "react-native"
 import Card from "./Card"
 import Sidebar from "react-native-sidebar"
 import { AppStore } from "../AppStore/AppStore"
+import Spinner from "react-native-loading-spinner-overlay"
 
 export default class Home extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ export default class Home extends Component {
       card_width: screen_width,
       display_names: [],
       image_urls: [],
-      name_and_image: [[]]
+      name_and_image: [[]],
+      loading: true
     }
   }
 
@@ -33,6 +35,7 @@ export default class Home extends Component {
 
     refreshComp = () => {
       this.forceUpdate()
+      this.setState({ loading: false })
     }
 
     setDataState = data => {
@@ -121,8 +124,10 @@ export default class Home extends Component {
     let item_arr = []
     return (
       <ScrollView>
+        <Spinner visible={this.state.loading} textContent={"Loading..."} />
         {this.state.name_and_image.map(nameThenImage => (
           <Card
+            visible={!this.state.loading}
             key={Math.random()}
             title={nameThenImage[0]}
             image={nameThenImage[1]}
