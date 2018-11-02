@@ -18,7 +18,10 @@ class OptionView extends Component {
   static navigationOptions = {
     title: "Navigation Options",
     headerMode: "screen",
-    color: "blue"
+    headerStyle: {
+      backgroundColor: "#2067AE"
+    },
+    headerTintColor: "#FFF"
   }
 
   navigateToHomeScreen = () => {

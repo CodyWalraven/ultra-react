@@ -21,7 +21,10 @@ export default class Home extends Component {
   static navigationOptions = {
     title: "Assets",
     headerMode: "screen",
-    color: "blue"
+    headerStyle: {
+      backgroundColor: "#2067AE"
+    },
+    headerTintColor: "#FFF"
   }
   // Runs right before the home screen appears
   componentWillMount() {
@@ -127,7 +130,6 @@ export default class Home extends Component {
         <Spinner visible={this.state.loading} textContent={"Loading..."} />
         {this.state.name_and_image.map(nameThenImage => (
           <Card
-            visible={!this.state.loading}
             key={Math.random()}
             title={nameThenImage[0]}
             image={nameThenImage[1]}
