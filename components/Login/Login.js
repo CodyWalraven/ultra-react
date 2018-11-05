@@ -8,7 +8,7 @@ import {
 } from "react-native"
 import LoginForm from "./LoginForm"
 import { LinearGradient } from "expo"
-import Spinner from "react-native-loading-spinner-overlay"
+
 
 export default class Login extends Component {
   static navigationOptions = {
