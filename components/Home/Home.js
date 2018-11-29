@@ -122,9 +122,6 @@ export default class Home extends Component {
   }
 
   render() {
-    let first_val = ""
-    let second_val = ""
-    let item_arr = []
     return (
       <ScrollView>
         <Spinner visible={this.state.loading} textContent={"Loading..."} />
