@@ -28,9 +28,7 @@ export default class Home extends Component {
   }
   // Runs right before the home screen appears
   componentWillMount() {
-    this.fetchAssetGroupID(() => {
       this.fetchGroupData()
-    })
   }
 
   fetchGroupData = () => {
@@ -63,10 +61,10 @@ export default class Home extends Component {
         this.state.name_and_image[x] = new Array(current_item, image_url)
       }
     }
-    //
+    
     xhr.open(
       "GET",
-      `https://login.assetpanda.com/v2/entities/${
+      `https://login.assetpanda.com/v1/entities/${
         AppStore.main_entity_id
       }/objects`,
       true
@@ -91,35 +89,6 @@ export default class Home extends Component {
     }
   }
 
-  fetchAssetGroupID = callback => {
-    //Sends credentials to api and stores token, also navigates to Home screen upon success
-    let xhr = new XMLHttpRequest()
-
-    refreshComp = () => {
-      this.forceUpdate()
-    }
-
-    getGroupInfo = group_id => {
-      this.fetchGroupData(group_id)
-    }
-
-    xhr.open("GET", "https://login.assetpanda.com/v2/entities", true)
-    xhr.setRequestHeader("Content-Type", "application/json")
-    xhr.setRequestHeader("Authorization", `Bearer ${AppStore.client_token}`)
-    xhr.send(JSON.stringify({}))
-
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        var data_full = JSON.parse(this.responseText)
-        AppStore.main_entity_id = data_full[0].id
-        callback()
-      } else if (xhr.status === 502) {
-        alert("502 bad gateway error, please try again in a few minutes")
-      } else if (xhr.status === 500) {
-        alert("Internal server error")
-      }
-    }
-  }
 
   render() {
     return (
