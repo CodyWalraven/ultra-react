@@ -1,9 +1,10 @@
 import React, { Component } from "react"
-import { ScrollView, Text, Container, Dimensions, Keyboard } from "react-native"
+import { ScrollView, Text, Container, Dimensions, Keyboard, FlatList } from "react-native"
 import Card from "./Card"
 import Sidebar from "react-native-sidebar"
 import { AppStore } from "../AppStore/AppStore"
 import Spinner from "react-native-loading-spinner-overlay"
+import AnimatedHideView from 'react-native-animated-hide-view'
 
 export default class Home extends Component {
   constructor(props) {
@@ -94,13 +95,17 @@ export default class Home extends Component {
     return (
       <ScrollView>
         <Spinner visible={this.state.loading} textContent={"Loading..."} />
-        {this.state.name_and_image.map(nameThenImage => (
-          <Card
-            key={Math.random()}
-            title={nameThenImage[0]}
-            image={nameThenImage[1]}
-          />
-        ))}
+        <AnimatedHideView visible={!this.state.loading}>
+          {this.state.name_and_image.map(nameThenImage => (
+            <Card
+            visible={false}
+              style={{width: 0, height: 0}}
+              key={Math.random()}
+              title={nameThenImage[0]}
+              image={nameThenImage[1]}
+            />
+          ))}
+        </AnimatedHideView>
       </ScrollView>
     )
   }

@@ -14,6 +14,7 @@
     "npm-check": "^5.9.0",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native-animated-hide-view": "^1.0.0",
     "react-native-camera": "^1.4.3",
     "react-native-cardview": "^2.0.2",
     "react-native-loading-spinner-overlay": "^1.0.1",
