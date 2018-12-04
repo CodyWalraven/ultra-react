@@ -3,6 +3,7 @@ import { View, Text, Dimensions, StyleSheet } from "react-native"
 import { CardViewWithImage } from "react-native-simple-card-view"
 import { withNavigation } from "react-navigation"
 import { AppStore } from "../AppStore/AppStore"
+import Spinner from "react-native-loading-spinner-overlay"
 
 
 class OptionView extends Component {
@@ -13,7 +14,8 @@ class OptionView extends Component {
 
     this.state = {
       width: width,
-      height: height
+      height: height,
+      loading: true
     }
   }
 
@@ -42,9 +44,14 @@ class OptionView extends Component {
     this.props.navigation.navigate("Barcode")
   }
 
+
   fetchAssetGroupID = () => {
     //Sends credentials to api and stores token, also navigates to Home screen upon success
     let xhr = new XMLHttpRequest()
+
+    setLoadingState = (state) => {
+      this.setState({ loading: state })
+    }
 
     xhr.open("GET", "https://login.assetpanda.com/v1/entities", true)
     xhr.setRequestHeader("Content-Type", "application/json")
@@ -56,6 +63,7 @@ class OptionView extends Component {
         var data_full = JSON.parse(this.responseText)
         AppStore.main_entity_id = data_full[0].id
         console.log(`Asset ID of ${AppStore.main_entity_id}`);
+        setLoadingState(false)
       } else if (xhr.status === 502) {
         alert("502 bad gateway error, please try again in a few minutes")
       } else if (xhr.status === 500) {
@@ -67,6 +75,7 @@ class OptionView extends Component {
   render() {
     return (
       <View>
+        <Spinner visible={this.state.loading} textContent={"Loading..."} />
         <CardViewWithImage
           onPress={() => this.navigateToHomeScreen()}
           width={this.state.width}
