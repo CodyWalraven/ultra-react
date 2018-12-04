@@ -132,6 +132,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 20
   }
-})
+}) 
 
 export default withNavigation(LoginForm)
