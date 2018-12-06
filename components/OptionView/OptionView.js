@@ -4,7 +4,7 @@ import { CardViewWithImage } from "react-native-simple-card-view"
 import { withNavigation } from "react-navigation"
 import { AppStore } from "../AppStore/AppStore"
 import Spinner from "react-native-loading-spinner-overlay"
-
+import Hamburger from "../HamburgerButton/Hamburger"
 
 class OptionView extends Component {
   constructor(props) {
@@ -23,14 +23,14 @@ class OptionView extends Component {
     title: "Navigation Options",
     headerMode: "screen",
     gesturesEnabled: false,
-    headerLeft: null,
+    headerLeft: <Hamburger />,
     headerStyle: {
       backgroundColor: "#2067AE"
     },
     headerTintColor: "#FFF"
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.fetchAssetGroupID()
   }
 
@@ -44,12 +44,11 @@ class OptionView extends Component {
     this.props.navigation.navigate("Barcode")
   }
 
-
   fetchAssetGroupID = () => {
     //Sends credentials to api and stores token, also navigates to Home screen upon success
     let xhr = new XMLHttpRequest()
 
-    setLoadingState = (state) => {
+    setLoadingState = state => {
       this.setState({ loading: state })
     }
 
@@ -62,7 +61,7 @@ class OptionView extends Component {
       if (xhr.status === 200) {
         var data_full = JSON.parse(this.responseText)
         AppStore.main_entity_id = data_full[0].id
-        console.log(`Asset ID of ${AppStore.main_entity_id}`);
+        console.log(`Asset ID of ${AppStore.main_entity_id}`)
         setLoadingState(false)
       } else if (xhr.status === 502) {
         alert("502 bad gateway error, please try again in a few minutes")

@@ -1,6 +1,11 @@
+/* eslint-disable no-console */
 export class AppStore {
   constructor(token) {
     this.token = token
+  }
+
+  set asset_data(input){
+    this.assetData = input
   }
 
   get client_token() {
