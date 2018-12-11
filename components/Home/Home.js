@@ -1,16 +1,7 @@
 import React, { Component } from "react"
-import {
-  ScrollView,
-  Text,
-  Container,
-  Dimensions,
-  Keyboard,
-  FlatList,
-  Image
-} from "react-native"
+import { ScrollView, Dimensions, View } from "react-native"
 import Card from "./Card"
 import Hamburger from "../HamburgerButton/Hamburger"
-import Sidebar from "react-native-sidebar"
 import { AppStore } from "../AppStore/AppStore"
 import Spinner from "react-native-loading-spinner-overlay"
 import AnimatedHideView from "react-native-animated-hide-view"
@@ -34,9 +25,7 @@ export default class Home extends Component {
     headerStyle: {
       backgroundColor: "#2067AE"
     },
-    headerTintColor: "#FFF",
-
-    headerLeft: <Hamburger onPress={() => console.log("Side button clicked")} />
+    headerTintColor: "#FFF"
   }
   // Runs right before the home screen appears
   componentWillMount() {
@@ -103,20 +92,22 @@ export default class Home extends Component {
 
   render() {
     return (
-      <ScrollView>
-        <Spinner visible={this.state.loading} textContent={"Loading..."} />
-        <AnimatedHideView visible={!this.state.loading}>
-          {this.state.name_and_image.map(nameThenImage => (
-            <Card
-              visible={false}
-              style={{ width: 0, height: 0 }}
-              key={Math.random()}
-              title={nameThenImage[0]}
-              image={nameThenImage[1]}
-            />
-          ))}
-        </AnimatedHideView>
-      </ScrollView>
+      <View>
+        <ScrollView>
+          <Spinner visible={this.state.loading} textContent={"Loading..."} />
+          <AnimatedHideView visible={!this.state.loading}>
+            {this.state.name_and_image.map(nameThenImage => (
+              <Card
+                visible={false}
+                style={{ width: 0, height: 0 }}
+                key={Math.random()}
+                title={nameThenImage[0]}
+                image={nameThenImage[1]}
+              />
+            ))}
+          </AnimatedHideView>
+        </ScrollView>
+      </View>
     )
   }
 }

@@ -10,9 +10,8 @@ export default class Hamburger extends Component {
   render() {
     return (
       <Image
-        onPress={alert("I pressed it")}
         source={require("../../assets/images/hamburger.png")}
-        style={{ width: 35, height: 35 }}
+        style={{ width: 40, height: 40 }}
       />
     )
   }
