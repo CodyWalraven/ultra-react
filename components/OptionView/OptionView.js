@@ -60,8 +60,8 @@ class OptionView extends Component {
     xhr.onload = function() {
       if (xhr.status === 200) {
         var data_full = JSON.parse(this.responseText)
-        AppStore.main_entity_id = data_full[0].id
-        console.log(`Asset ID of ${AppStore.main_entity_id}`)
+        AppStore.asset_id = data_full[0].id
+        console.log(`Asset ID of ${AppStore.asset_id}`)
         setLoadingState(false)
       } else if (xhr.status === 502) {
         alert("502 bad gateway error, please try again in a few minutes")

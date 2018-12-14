@@ -65,9 +65,7 @@ export default class Home extends Component {
 
     xhr.open(
       "GET",
-      `https://login.assetpanda.com/v1/entities/${
-        AppStore.main_entity_id
-      }/objects`,
+      `https://login.assetpanda.com/v1/entities/${AppStore.asset_id}/objects`,
       true
     )
     xhr.setRequestHeader("Content-Type", "application/json")

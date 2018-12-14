@@ -4,8 +4,15 @@ export class AppStore {
     this.token = token
   }
 
-  set asset_data(input){
+  set asset_data(input) {
     this.assetData = input
+  }
+
+  set asset_id(input) {
+    this.assetId = input
+  }
+  get asset_id() {
+    return this.assetId
   }
 
   get client_token() {
