@@ -48,9 +48,8 @@ export default class Home extends Component {
       return this.state.name_and_image
     }
 
-    setImageAndTitleData = () => {
-      console.log(`Setting Image and Title`)
-      let objects = this.state.data.objects
+    setImageAndTitleData = data => {
+      let objects = data.objects
       for (let x = 0; x < objects.length; x++) {
         let current_item = objects[x].display_name
         let image_url = ""
@@ -78,8 +77,7 @@ export default class Home extends Component {
       xhr.onload = function() {
         if (xhr.status === 200) {
           AppStore.asset_data = JSON.parse(this.responseText)
-          setDataState(AppStore.asset_data)
-          setImageAndTitleData()
+          setImageAndTitleData(AppStore.asset_data)
           refreshComp()
         } else if (xhr.status === 502) {
           alert("502 bad gateway error, please try again in a few minutes")
@@ -91,9 +89,7 @@ export default class Home extends Component {
       }
     } else {
       console.log(`Asset data found, loading from cache`)
-      setDataState(AppStore.asset_data)
-      console.log(`The state is ${this.state.data}`)
-      setImageAndTitleData()
+      setImageAndTitleData(AppStore.asset_data)
       refreshComp()
     }
   }
