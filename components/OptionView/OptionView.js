@@ -23,7 +23,7 @@ class OptionView extends Component {
     title: "Navigation Options",
     headerMode: "screen",
     gesturesEnabled: false,
-    headerLeft: <Hamburger />,
+    headerLeft: null,
     headerStyle: {
       backgroundColor: "#2067AE"
     },
