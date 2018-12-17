@@ -48,6 +48,7 @@ class OptionView extends Component {
     //Sends credentials to api and stores token, also navigates to Home screen upon success
     let xhr = new XMLHttpRequest()
 
+    //This is used to display the loading spinner
     setLoadingState = state => {
       this.setState({ loading: state })
     }

@@ -49,6 +49,7 @@ export default class Home extends Component {
     }
 
     setImageAndTitleData = () => {
+      console.log(`Setting Image and Title`)
       let objects = this.state.data.objects
       for (let x = 0; x < objects.length; x++) {
         let current_item = objects[x].display_name
@@ -63,28 +64,37 @@ export default class Home extends Component {
       }
     }
 
-    xhr.open(
-      "GET",
-      `https://login.assetpanda.com/v1/entities/${AppStore.asset_id}/objects`,
-      true
-    )
-    xhr.setRequestHeader("Content-Type", "application/json")
-    xhr.setRequestHeader("Authorization", `Bearer ${AppStore.client_token}`)
-    xhr.send(JSON.stringify({}))
+    if (AppStore.asset_data == undefined) {
+      console.log(`No asset data found, fetching info`)
+      xhr.open(
+        "GET",
+        `https://login.assetpanda.com/v1/entities/${AppStore.asset_id}/objects`,
+        true
+      )
+      xhr.setRequestHeader("Content-Type", "application/json")
+      xhr.setRequestHeader("Authorization", `Bearer ${AppStore.client_token}`)
+      xhr.send(JSON.stringify({}))
 
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        var data = JSON.parse(this.responseText)
-        setDataState(data)
-        setImageAndTitleData()
-        refreshComp()
-      } else if (xhr.status === 502) {
-        alert("502 bad gateway error, please try again in a few minutes")
-      } else if (xhr.status === 500) {
-        alert("Internal server error")
-      } else {
-        alert(`Some other error occured code ${xhr.status}`)
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          AppStore.asset_data = JSON.parse(this.responseText)
+          setDataState(AppStore.asset_data)
+          setImageAndTitleData()
+          refreshComp()
+        } else if (xhr.status === 502) {
+          alert("502 bad gateway error, please try again in a few minutes")
+        } else if (xhr.status === 500) {
+          alert("Internal server error")
+        } else {
+          alert(`Some other error occured code ${xhr.status}`)
+        }
       }
+    } else {
+      console.log(`Asset data found, loading from cache`)
+      setDataState(AppStore.asset_data)
+      console.log(`The state is ${this.state.data}`)
+      setImageAndTitleData()
+      refreshComp()
     }
   }
 

@@ -2,10 +2,15 @@
 export class AppStore {
   constructor(token) {
     this.token = token
+    //this.assetData = "undefined"
   }
 
-  set asset_data(input) {
-    this.assetData = input
+  set asset_data(input2) {
+    this.assetData = input2
+  }
+
+  get asset_data() {
+    return this.assetData
   }
 
   set asset_id(input) {
