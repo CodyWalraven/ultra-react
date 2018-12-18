@@ -48,7 +48,7 @@ export default class Home extends Component {
       return this.state.name_and_image
     }
 
-    setImageAndTitleData = data => {
+    setImageAndTitleData = (data) => {
       let objects = data.objects
       for (let x = 0; x < objects.length; x++) {
         let current_item = objects[x].display_name

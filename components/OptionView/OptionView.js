@@ -79,7 +79,7 @@ class OptionView extends Component {
         <CardViewWithImage
           onPress={() => this.navigateToHomeScreen()}
           width={this.state.width}
-          source={require("../../assets/images/fix_search.png")}
+          source={require("../../assets/images/fix_search_view.png")}
           content={this.props.secondary_default}
           title={""}
           roundedImage={false}
@@ -89,7 +89,7 @@ class OptionView extends Component {
         <CardViewWithImage
           onPress={() => this.navigateToBarcode()}
           width={this.state.width}
-          source={require("../../assets/images/fix_barcode.png")}
+          source={require("../../assets/images/fix_barcode_view.png")}
           content={this.props.secondary_default}
           title={""}
           roundedImage={false}
