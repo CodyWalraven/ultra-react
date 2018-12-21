@@ -94,6 +94,7 @@ export default class Home extends Component {
     }
   }
 
+  //Render the screen
   render() {
     return (
       <View>
